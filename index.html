@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Accessible text labels</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="./favicon.ico">
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+  <!-- Master CSS file -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <!-- Local CSS file if needed -->
+</head>
+<body>
+
+  <!-- skip to content link -->
+  <div class="skip-link">
+    <a href="#main">Skip to content (Press enter)</a>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <h1 class="header__logo"><a href="http://code.intopia.digital"><img src="assets/img/code-intopia.png" alt="Code Intopia"></a></h1>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <div class="banner">
+    <div class="container">
+      <h2>Accessible text labels</h2>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Navigation -->
+    <nav class="aside">
+      <ul class="menu">
+        <li><a href="#problem">The problem</a></li>
+        <li><a href="#tests">Test criteria</a></li>
+        <li><a href="#solutions">Test cases</a></li>
+        <li><a href="#results">Test results</a></li>
+        <li><a href="#recommendations">Recommendations</a></li>
+        <li><a href="#wcag">WCAG references</a></li>
+        <li><a class="menu__external" href="http://code.intopia.digital">Home</a></li>
+      </ul>
+      <div>
+        <a class="link-primary" href="https://github.com/Intopia/text-labels">Download Git repo</a>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="main" id="main">
+      <h3 id="problem">The problem</h3>
+      <p>If text labels are not correctly associated with their relevant form controls, assistive technology users  may not hear these text labels announced as they navigate through forms. Text labels should be programmatically associated with their form controls.</p>
+      <hr>
+
+      <h3 id="tests">Test criteria</h3>
+      <ol>
+        <li>Is the text label announced when the form control recieves focus?</li>
+      </ol>
+      <hr>
+
+      <h3 id="examples">Test cases</h3>
+      <h4 id="example1">Example 1: No label</h4>
+      <div class="example">
+        <div class="input">
+          <span class="input__label">Example 1</span>
+          <input class="input__control" type="text">
+        </div>
+      </div>
+<pre><code class="language-markup">&lt;div class="input"&gt;
+  &lt;span class="input__label"&gt;Example 1&lt;/span&gt;
+  &lt;input class="input__control" type="text"&gt;
+&lt;/div&gt;
+</code></pre>
+
+      <h4 id="example2">Example 2: Wrapping control inside label</h4>
+      <div class="example">
+        <div class="input">
+          <label>
+            <span class="input__label">Example 2</span>
+            <input class="input__control" type="text">
+          </label>
+        </div>
+      </div>
+<pre><code class="language-markup">&lt;div class="input"&gt;
+  &lt;label&gt;
+    &lt;span class="input__label"&gt;Example 2&lt;/span&gt;
+    &lt;input class="input__control" type="text"&gt;
+  &lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+
+      <h4 id="example3">Example 3: Using <code>for</code> &amp; <code>id</code> attributes</h4>
+      <div class="example">
+        <div class="input">
+          <label class="input__label" for="example03">Example 3</label>
+          <input class="input__control" type="text" id="example03">
+        </div>
+      </div>
+<pre><code class="language-markup">&lt;div class="input"&gt;
+  &lt;label class="input__label" for="example03"&gt;Example 3&lt;/label&gt;
+  &lt;input class="input__control" type="text" id="example03"&gt;
+&lt;/div&gt;
+</code></pre>
+
+      <h4 id="example4">Example 4: Using the <code>aria-labelledby</code> attribute</h4>
+      <div class="example">
+        <div class="input">
+          <span class="input__label" aria-labelledby="example04">Example 4</span>
+          <input class="input__control" type="text" id="example04">
+        </div>
+      </div>
+<pre><code class="language-markup">&lt;div class="input"&gt;
+  &lt;span class="input__label" aria-labelledby="example04"&gt;Example 4&lt;/span&gt;
+  &lt;input class="input__control" type="text" id="example04"&gt;
+&lt;/div&gt;
+</code></pre>
+
+      <h4 id="example5">Example 5: Using the <code>title</code> attribute</h4>
+      <div class="example">
+        <div class="input">
+          <span class="input__label">Example 5</span>
+          <input class="input__control" type="text" title="Example 5">
+        </div>
+      </div>
+<pre><code class="language-markup">&lt;div class="input"&gt;
+  &lt;span class="input__label"&gt;Example 5&lt;/span&gt;
+  &lt;input class="input__control" type="text" title="Example 5"&gt;
+&lt;/div&gt;
+</code></pre>
+      <hr>
+
+      <h3 id="results">Test results</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Environment</th>
+              <th>Example1</th>
+              <th>Example2</th>
+              <th>Example3</th>
+              <th>Example4</th>
+              <th>Example5</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Win/Edge/NVDA</td>
+              <td><span class="fail">Fail</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="fail">Fail</span></td>
+              <td><span class="pass">Pass</span></td>
+            </tr>
+            <tr>
+              <td>Win/Chrome/NVDA</td>
+              <td><span class="fail">Fail</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="fail">Fail</span></td>
+              <td><span class="pass">Pass</span></td>
+            </tr>
+            <tr>
+              <td>Win/Firefox/NVDA</td>
+              <td><span class="fail">Fail</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="fail">Fail</span></td>
+              <td><span class="pass">Pass</span></td>
+            </tr>
+            <tr>
+              <td>Win/Edge/JAWS</td>
+              <td><span class="fail">Fail</span></td>
+              <td><span class="fail">Fail</span></td>
+              <td><span class="fail">Fail</span></td>
+              <td><span class="fail">Fail</span></td>
+              <td><span class="fail">Fail</span></td>
+            </tr>
+            <tr>
+              <td>Win/Chrome/JAWS</td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="pass">Pass</span></td>
+            </tr>
+            <tr>
+              <td>Win/Firefox/JAWS</td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="pass">Pass</span></td>
+            </tr>
+            <tr>
+              <td>OSX/Chrome/Voiceover</td>
+              <td><span class="fail">Fail</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="fail">Fail</span></td>
+              <td><span class="pass">Pass</span></td>
+            </tr>
+            <tr>
+              <td>OSX/Firefox/Voiceover</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td>OSX/Safari/Voiceover</td>
+              <td><span class="fail">Fail</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="pass">Pass</span></td>
+              <td><span class="fail">Fail</span></td>
+              <td><span class="pass">Pass</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <hr>
+
+      <h3 id="recommendations">Recommendations</h3>
+      <p>Text labels should always be programmatically associated with their relevant form controls using the label element and matching <code>for</code> and <code>id</code> atrributes.</p>
+      <p><a href="#example3">Example 3: Using for &amp; id attributes</a> is the <b>recommended solution</b>.</p>
+      <p>Even though <a href="#example2">Example 2: Wrapping control inside label</a> passes most tests, the text label is not programmatically associated with its form control and is therefore <b>not recommended</b>.</p>
+      <hr>
+
+      <h3 id="wcag">Related WCAG references</h3>
+      <h4>Success Criterion</h4>
+      <ul>
+        <li><a href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html">1.3.1 Info and Relationships</a></li>
+      </ul>
+      <h4>Sufficient techniques</h4>
+      <ul>
+        <li><a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H44">H44: Using label elements to associate text labels with form controls</a></li>
+        <li><a href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA16">ARIA16: Using aria-labelledby to provide a name for user interface controls</a></li>
+        <li><a href="https://www.w3.org/WAI/WCAG21/Techniques/general/G115">G115: Using semantic elements to mark up structure </a></li>
+        <li><a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H65">H65: Using the title attribute to identify form controls when the label element cannot be used</a></li>
+      </ul>
+      <hr>
+
+    </main>
+  </div>
+
+<script src="assets/js/prism.js"></script>
+</body>
+</html>
